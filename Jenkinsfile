@@ -1,2 +1,2 @@
-# renovate: datasource=github-releases depName=oxsecurity/megalinter-terraform
-def megalinter_version=v7.9.0
+# renovate: datasource=github-releases depName=timostamm/protobuf-ts
+  - plugin: buf.build/community/timostamm-protobuf-ts:v2.9.0
