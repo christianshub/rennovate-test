@@ -1,13 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>parca-dev/.github"],
+  "extends": [
+    "github>parca-dev/.github"
+  ],
   "dependencyDashboard": false,
-  "regexManagers": [
+  "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^Jenkinsfile$"],
+      "fileMatch": [
+        "^Jenkinsfile$"
+      ],
       "matchStrings": [
-          "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*)\\s\"v(?<currentValue>.*)\""
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*)\\s\"v(?<currentValue>.*)\""
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
