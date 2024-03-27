@@ -1,8 +1,7 @@
 import re
 
 # Corrected regex with proper syntax for named capture groups
-corrected_regex = r"datasource=(?P<datasource>.*?) depName=(?P<depName>.*?) versioning=(?P<versioning>.*?)\n.*?=\"(?P<currentValue>.*)\""
-
+corrected_regex = r"datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?=\"(?<currentValue>.*)\""
 # Provided sample text
 text = """
 # renovate: datasource=github-releases depName=oxsecurity/megalinter-terraform versioning=loose
