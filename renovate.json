@@ -1,15 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>parca-dev/.github"],
   "dependencyDashboard": false,
-  "regexManagers": [
+  "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^Jenkinsfile$"],
+      "description": "Update Buf plugins",
+      "fileMatch": ["(^|/)buf\\.gen\\.yaml$"],
       "matchStrings": [
-          "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*)\\s\"v(?<currentValue>.*)\""
-      ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+        "# renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)(?: (?:packageName)=(?<packageName>.+?))?(?: versioning=(?<versioning>.+?))?\\s*-?\\s*plugin: ('|\")?.*:(?<currentValue>.+?)('|\")?\\s"
+      ]
     }
   ]
 }
