@@ -7,7 +7,7 @@
       "customType": "regex",
       "fileMatch": ["^Jenkinsfile$"],
       "matchStrings": [
-          "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\nv(?<currentValue>.*)"
+          "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\nv(?<currentValue>.*)"
       ]
     }
   ]
