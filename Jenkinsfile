@@ -1,5 +1,2 @@
-# renovate: datasource=github-releases depName=planetscale/vtprotobuf
-  - plugin: buf.build/community/planetscale-vtprotobuf:v0.4.0
-    out: gen/proto/go
-    opt:
-      - paths=source_relative,features=marshal+unmarshal+size+pool+grpc
+# renovate: datasource=github-releases depName=oxsecurity/megalinter-terraform
+def megalinter_version=v7.9.0
