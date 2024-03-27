@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "dependencyDashboard": false,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^Jenkinsfile.*$"],
+      "matchStrings": [
+         "datasource=(?P<datasource>.*?) depName=(?P<depName>.*?) versioning=(?P<versioning>.*?)\n.*?=\"(?P<currentValue>.*)\""
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ]
+}
