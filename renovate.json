@@ -7,7 +7,7 @@
       "customType": "regex",
       "fileMatch": ["^Jenkinsfile$"],
       "matchStrings": [
-          "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sv(?<currentValue>.*)"
+          "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\nv(?<currentValue>.*)"
       ]
     }
   ]
