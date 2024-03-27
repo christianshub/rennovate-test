@@ -5,7 +5,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^Jenkinsfile.*$"],
+      "fileMatch": ["^Jenkinsfile$"],
       "matchStrings": [
          "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\n.*?=\"(?<currentValue>.*)\n"
       ],
