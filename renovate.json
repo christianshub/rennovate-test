@@ -7,8 +7,9 @@
       "customType": "regex",
       "fileMatch": ["^Jenkinsfile.*$"],
       "matchStrings": [
-         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\n.*?=v\"(?<currentValue>.*)\""
-      ]
+         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?=v\"(?<currentValue>.*)\""
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ]
 }
