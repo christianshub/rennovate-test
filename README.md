@@ -72,8 +72,7 @@ Generate a token (assuming you are using GitHub in this guide) at <https://githu
 1. Install nvm, npm and renovate:
 
     ```bash
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh |
-    bash` # (bump the version)
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash # (bump the version)
     nvm install node
     npm install -g renovate
     ```
