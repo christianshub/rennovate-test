@@ -6,101 +6,93 @@ Minimal setup as a POC.
 
 For renovate to access repositories public and private, a Github token is needed.
 
-1. Generate a token (assuming you are using GitHub in this guide) at
-   <https://github.com/settings/tokens>
+Generate a token (assuming you are using GitHub in this guide) at <https://github.com/settings/tokens>
 
-1. Add or export your token:
 
-    Windows:
+### Windows
 
-        ```
-        $env:GITHUB_TOKEN="<your-token>"
-        # verify:
-        echo $env:GITHUB_TOKEN
-        ```
+1. Use your token as an environment variable:
 
-    Ubuntu:
-
-        ```bash
-        export GITHUB_TOKEN="<your-token>"
-        ```
-        
-        Or add it to your .bashrc/.zshrc:
-
-        ```bash
-        echo 'export GITHUB_TOKEN="<your-token>"' >> ~/.zshrc # or ~/.bashrc
-        source ~/.zshrc
-        ```
+    ```ps1
+    $env:GITHUB_TOKEN="<your-token>"
+    # verify:
+    echo $env:GITHUB_TOKEN
+    ```
 
 1. Confirm the validity of the token by running:
 
-    Windows:
+    ```ps1
+    $headers = @{
+        "Authorization" = "token $env:GITHUB_TOKEN"
+    }
+    Invoke-WebRequest -Uri "https://api.github.com/user" -Headers $headers
+    ```
 
-        ```ps1
-        $headers = @{
-            "Authorization" = "token $env:GITHUB_TOKEN"
-        }
-        Invoke-WebRequest -Uri "https://api.github.com/user" -Headers $headers
-        ```
+### Linux (Ubuntu)
 
-    Linux:
-            
-        ```bash
-        curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
-        ```
-        
-It should display details about the user that created the token:
+1. Use your token as an environment variable:
 
-```markdown
-{
-    "login": "<your-user-name>",
-    "id": "2539",
-    // left out for brevity
-}
-```
+    ```bash
+    export GITHUB_TOKEN="<your-token>"
+    ```
+
+    Or add it to your .bashrc/.zshrc:
+
+    ```bash
+    echo 'export GITHUB_TOKEN="<your-token>"' >> ~/.zshrc # or ~/.bashrc
+    source ~/.zshrc
+    ```
+
+1. Confirm the validity of the token by running:
+                
+    ```bash
+    curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
+    ```
 
 ## Install renovate
 
+### Windows
+    
 1. Ensure nodejs and npm are installed
 
-    * Windows
-        1. Install nvm from
-           <https://github.com/coreybutler/nvm-windows/releases> (you may need
-           to restart after install)
-        1. Install nodejs: 
-            
-            ```ps1
-            nvm install node
-            nvm install latestnvm use latest
-            ```
-        
-        1. Install renovate: `npm install -g renovate`
+1. Install nvm from <https://github.com/coreybutler/nvm-windows/releases> (you may need to restart after install)
 
-    * Linux (Ubuntu)
+1. Install nodejs: 
 
-        1. Install nvm: `curl -o-
-           https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh |
-           bash` (bump the version)
-        1. Install node: `nvm install node`
-        1. Install renovate: `npm install -g renovate`
-        
+    ```ps1
+    nvm install node
+    nvm install latest
+    nvm use latest
+    ```
+
+1. Install renovate: `npm install -g renovate`
+
+### Linux (Ubuntu)
+
+1. Install nvm, npm and renovate:
+
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh |
+    bash` # (bump the version)
+    nvm install node
+    npm install -g renovate
+    ```
+    
 ## Run renovate
 
-To run renovate against a repo do:
+### Windows
 
-    Windows:
+```ps1
+renovate --token $env:GITHUB_TOKEN --platform=github christianshub/renovate-test
+```
 
-        ```ps1
-        renovate --token $env:GITHUB_TOKEN --platform=github christianshub/rennovate-test
-        ```
-    
-    Linux:
-    
-        ```bash
-        renovate --token $GITHUB_TOKEN --platform=github christianshub/renovate-test
-        ```
+### Linux (Ubuntu)
 
-        > Note you can also you docker for this: `docker run --rm -e GITHUB_TOKEN=$GITHUB_TOKEN renovate/renovate:37 --platform=github christianshub/renovate-test`
+```bash
+renovate --token $GITHUB_TOKEN --platform=github christianshub/renovate-test
+```
+
+> Note you can also you docker for this: `docker run --rm -e GITHUB_TOKEN=$GITHUB_TOKEN renovate/renovate:37 --platform=github christianshub/renovate-test`
 
 ## Debug
 
