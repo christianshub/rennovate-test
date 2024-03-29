@@ -11,22 +11,44 @@ For renovate to access repositories public and private, a Github token is needed
 
 1. Add or export your token:
 
-    ```bash
-    export GITHUB_TOKEN="<your-token>"
-    ```
-    
-    Or add it to your .bashrc/.zshrc:
+    Windows:
 
-    ```bash
-    echo 'export GITHUB_TOKEN="<your-token>"' >> ~/.zshrc # or ~/.bashrc
-    source ~/.zshrc
-    ```
+        ```
+        $env:GITHUB_TOKEN="<your-token>"
+        # verify:
+        echo $env:GITHUB_TOKEN
+        ```
+
+    Ubuntu:
+
+        ```bash
+        export GITHUB_TOKEN="<your-token>"
+        ```
+        
+        Or add it to your .bashrc/.zshrc:
+
+        ```bash
+        echo 'export GITHUB_TOKEN="<your-token>"' >> ~/.zshrc # or ~/.bashrc
+        source ~/.zshrc
+        ```
 
 1. Confirm the validity of the token by running:
 
-```bash
-curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
-```
+    Windows:
+
+        ```ps1
+        $headers = @{
+            "Authorization" = "token $env:GITHUB_TOKEN"
+        }
+        Invoke-WebRequest -Uri "https://api.github.com/user" -Headers $headers
+        ```
+
+    Linux:
+            
+        ```bash
+        curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
+        ```
+        
 It should display details about the user that created the token:
 
 ```markdown
@@ -66,11 +88,19 @@ It should display details about the user that created the token:
 
 To run renovate against a repo do:
 
-    ```bash
-    renovate --token $GITHUB_TOKEN --platform=github christianshub/renovate-test
-    ```
+    Windows:
 
-    > Note you can also you docker for this: `docker run --rm -e GITHUB_TOKEN=$GITHUB_TOKEN renovate/renovate:37 --platform=github christianshub/renovate-test`
+        ```ps1
+        renovate --token $env:GITHUB_TOKEN --platform=github christianshub/rennovate-test
+        ```
+    
+    Linux:
+    
+        ```bash
+        renovate --token $GITHUB_TOKEN --platform=github christianshub/renovate-test
+        ```
+
+        > Note you can also you docker for this: `docker run --rm -e GITHUB_TOKEN=$GITHUB_TOKEN renovate/renovate:37 --platform=github christianshub/renovate-test`
 
 ## Debug
 
